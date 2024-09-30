@@ -5,7 +5,7 @@ Donate link: https://scriptstown.com/
 Requires at least: 5.0
 Tested up to: 6.6
 Requires PHP: 7.0
-Stable tag: 1.6.7
+Stable tag: 1.6.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,11 +13,11 @@ Secure WordPress login, registration, and comment form with Google reCAPTCHA or 
 
 == Description ==
 
-**Login Security Captcha** is a security plugin for WordPress to add CAPTCHA or CAPTCHA-free services like Cloudflare **Turnstile** and Google **reCAPTCHA** to the WordPress login, registration, lost password, and comment form. This is a fast and very **lightweight** security plugin to place captcha on standard WordPress forms with minimal footprints to prevent spam comments and protect against Brute-force attacks. It has simple settings to configure the plugin quickly.
+**Login Security Captcha** is a security plugin for WordPress to add CAPTCHA or CAPTCHA-free services such as Cloudflare **Turnstile** and Google **reCAPTCHA** to the WordPress login, registration, lost password, and comment form. This is a fast and lightweight security plugin to place captcha on standard WordPress forms with minimal footprints. It can prevent spam comments and protect the login form against Brute-force attacks. It has simple settings to configure the plugin quickly.
 
-It supports **Cloudflare Turnstile**, Google **reCAPTCHA** Version 2, and Version 3 with multiple options. This is the best WordPress captcha plugin for antispam protection to secure comment form and WordPress login page. You can even make use of different versions of reCAPTCHA and also Turnstile on different forms at the same time. The plugin comes with a set of simple options to quickly set up captcha validation on the forms. Also, you can monitor error logs.
+The plugin supports **Cloudflare Turnstile**, Google **reCAPTCHA** Version 2, and Version 3 with multiple options. This is the best WordPress captcha plugin for antispam protection to secure comment form and WordPress login page. It allows you to place different versions of reCAPTCHA and also Turnstile on different forms at the same time. This plugin comes with a set of simple options to quickly set up captcha validation on the common forms.
 
-Using this security plugin, you can change the captcha theme to light or dark for Cloudflare Turnstile and Google reCAPTCHA. You can configure other parameters like the score value for reCAPTCHA version 3. Also, you can adjust the captcha size to compact or normal for Cloudflare **Turnstile**.
+Using this security plugin, you can change the captcha theme to light or dark depending on your preferences for Cloudflare Turnstile and Google reCAPTCHA. You can also configure various other parameters like the score value for reCAPTCHA version 3. You can monitor the error logs and have the option to disable the captcha on the comment form for logged-in users. Also, you can adjust the captcha size to compact or normal for **Cloudflare Turnstile**.
 
 ### Login Security Captcha Features
 
@@ -93,6 +93,10 @@ Using this security plugin, you can change the captcha theme to light or dark fo
 7. Monitor Captcha Error Logs
 
 == Changelog ==
+
+= 1.6.8 =
+* Tested up to 6.6.2.
+* Readme updated.
 
 = 1.6.7 =
 * Readme updated.
