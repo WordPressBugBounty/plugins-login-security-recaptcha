@@ -5,7 +5,7 @@ Donate link: https://scriptstown.com/
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,10 @@ Using this security plugin, you can change the captcha theme to light or dark de
 7. Monitor Captcha Error Logs
 
 == Changelog ==
+
+= 1.7.1 =
+* Tested compatibility with PHP 8.4.
+* Readme updated.
 
 = 1.7.0 =
 * Tested up to 6.7.
