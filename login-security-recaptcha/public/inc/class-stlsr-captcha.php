@@ -45,7 +45,7 @@ class STLSR_Captcha {
 					return $user;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha2( $captcha );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -64,8 +64,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				return new WP_Error( 'captcha_invalid', $error_message );
+				return new WP_Error( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 
 			} elseif ( 'google_recaptcha_v3' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::grecaptcha_v3();
@@ -74,7 +73,7 @@ class STLSR_Captcha {
 					return $user;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha3( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -100,8 +99,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				return new WP_Error( 'captcha_invalid', $error_message );
+				return new WP_Error( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 
 			} elseif ( 'cf_turnstile' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::cf_turnstile();
@@ -110,7 +108,7 @@ class STLSR_Captcha {
 					return $user;
 				}
 
-				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) {
+				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_cf_turnstile( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -129,8 +127,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				return new WP_Error( 'captcha_invalid', $error_message );
+				return new WP_Error( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 			}
 		}
 
@@ -163,7 +160,7 @@ class STLSR_Captcha {
 					return $errors;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha2( $captcha );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -182,8 +179,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				$errors->add( 'captcha_invalid', $error_message );
+				$errors->add( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 
 			} elseif ( 'google_recaptcha_v3' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::grecaptcha_v3();
@@ -192,7 +188,7 @@ class STLSR_Captcha {
 					return $errors;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha3( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -218,8 +214,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				$errors->add( 'captcha_invalid', $error_message );
+				$errors->add( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 
 			} elseif ( 'cf_turnstile' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::cf_turnstile();
@@ -228,7 +223,7 @@ class STLSR_Captcha {
 					return $errors;
 				}
 
-				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) {
+				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_cf_turnstile( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -247,8 +242,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				$errors->add( 'captcha_invalid', $error_message );
+				$errors->add( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 			}
 		}
 
@@ -277,7 +271,7 @@ class STLSR_Captcha {
 					return $errors;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha2( $captcha );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -296,8 +290,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				$errors->add( 'captcha_invalid', $error_message );
+				$errors->add( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 
 			} elseif ( 'google_recaptcha_v3' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::grecaptcha_v3();
@@ -306,7 +299,7 @@ class STLSR_Captcha {
 					return $errors;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha3( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -332,8 +325,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				$errors->add( 'captcha_invalid', $error_message );
+				$errors->add( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 
 			} elseif ( 'cf_turnstile' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::cf_turnstile();
@@ -342,7 +334,7 @@ class STLSR_Captcha {
 					return $errors;
 				}
 
-				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) {
+				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_cf_turnstile( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -361,8 +353,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				$errors->add( 'captcha_invalid', $error_message );
+				$errors->add( 'captcha_invalid', wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ) );
 			}
 		}
 
@@ -397,7 +388,7 @@ class STLSR_Captcha {
 					return $commentdata;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha2( $captcha );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -416,8 +407,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				wp_die( $error_message, '', array( 'back_link' => true ) );
+				wp_die( wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ), '', array( 'back_link' => true ) );
 
 			} elseif ( 'google_recaptcha_v3' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::grecaptcha_v3();
@@ -426,7 +416,7 @@ class STLSR_Captcha {
 					return $commentdata;
 				}
 
-				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) {
+				if ( isset( $_POST['g-recaptcha-response'] ) && ! empty( $_POST['g-recaptcha-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_grecaptcha3( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -452,8 +442,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				wp_die( $error_message, '', array( 'back_link' => true ) );
+				wp_die( wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ), '', array( 'back_link' => true ) );
 
 			} elseif ( 'cf_turnstile' === $capt['captcha'] ) {
 				$captcha = STLSR_Helper::cf_turnstile();
@@ -462,7 +451,7 @@ class STLSR_Captcha {
 					return $commentdata;
 				}
 
-				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) {
+				if ( isset( $_POST['cf-turnstile-response'] ) && ! empty( $_POST['cf-turnstile-response'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Runs within WordPress processing; CAPTCHA also ensures verification.
 					$data = STLSR_Helper::verify_cf_turnstile( $captcha, $ip_address );
 
 					if ( isset( $data->{'error-codes'} ) && is_array( $data->{'error-codes'} ) && count( $data->{'error-codes'} ) ) {
@@ -481,8 +470,7 @@ class STLSR_Captcha {
 					}
 				}
 
-				$error_message = wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) );
-				wp_die( $error_message, '', array( 'back_link' => true ) );
+				wp_die( wp_kses( STLSR_Helper::get_msg()['captcha_error'], array( 'strong' => array() ) ), '', array( 'back_link' => true ) );
 			}
 		}
 

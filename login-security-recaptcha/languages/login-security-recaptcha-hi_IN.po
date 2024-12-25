@@ -2,11 +2,11 @@
 # This file is distributed under the same license as the Login Security Captcha plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Captcha 1.7.1\n"
+"Project-Id-Version: Login Security Captcha 1.7.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "recaptcha\n"
-"POT-Creation-Date: 2024-12-07T13:43:38+00:00\n"
-"PO-Revision-Date: 2024-12-07 19:13+0530\n"
+"POT-Creation-Date: 2024-12-25T04:17:36+00:00\n"
+"PO-Revision-Date: 2024-12-25 09:47+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hi_IN\n"
@@ -505,24 +505,28 @@ msgstr ""
 msgid "Compact"
 msgstr ""
 
+#: includes/class-stlsr-helper.php:449
+msgid "<strong>Error:</strong> Please confirm you are not a robot."
+msgstr ""
+
 #: public/inc/class-stlsr-captcha.php:38
 msgid "Login"
 msgstr "लॉग-इन"
 
-#: public/inc/class-stlsr-captcha.php:96 public/inc/class-stlsr-captcha.php:214
-#: public/inc/class-stlsr-captcha.php:328
-#: public/inc/class-stlsr-captcha.php:448
+#: public/inc/class-stlsr-captcha.php:95 public/inc/class-stlsr-captcha.php:210
+#: public/inc/class-stlsr-captcha.php:321
+#: public/inc/class-stlsr-captcha.php:438
 msgid "low-score"
 msgstr "कम अंक"
 
-#: public/inc/class-stlsr-captcha.php:156
+#: public/inc/class-stlsr-captcha.php:153
 msgid "Lost Password"
 msgstr "पासवर्ड खोया"
 
-#: public/inc/class-stlsr-captcha.php:270
+#: public/inc/class-stlsr-captcha.php:264
 msgid "Register"
 msgstr "रजिस्टर"
 
-#: public/inc/class-stlsr-captcha.php:390
+#: public/inc/class-stlsr-captcha.php:381
 msgid "Comment"
 msgstr "टिपण्णी"

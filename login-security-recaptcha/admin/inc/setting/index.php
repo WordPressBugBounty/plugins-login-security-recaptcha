@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || die();
 
-$menu_tab = ( isset( $_GET['tab'] ) && ! empty( $_GET['tab'] ) ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'captcha';
+$menu_tab = ( isset( $_GET['tab'] ) && ! empty( $_GET['tab'] ) ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'captcha'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Used to determine the active tab, not saved to the database.
 
 $menu_tabs = array(
 	'captcha'    => esc_html__( 'Captcha', 'login-security-recaptcha' ),

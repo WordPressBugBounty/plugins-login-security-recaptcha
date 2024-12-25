@@ -5,8 +5,8 @@ Donate link: https://scriptstown.com/
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.0
-Stable tag: 1.7.1
-License: GPLv2 or later
+Stable tag: 1.7.2
+License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Secure WordPress login, registration, and comment form with Google reCAPTCHA or Cloudflare Turnstile. Prevent Brute-force attacks and more.
@@ -93,6 +93,9 @@ Using this security plugin, you can change the captcha theme to light or dark de
 7. Monitor Captcha Error Logs
 
 == Changelog ==
+
+= 1.7.2 =
+* Code improvements.
 
 = 1.7.1 =
 * Tested compatibility with PHP 8.4.

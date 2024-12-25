@@ -125,7 +125,7 @@ class STLSR_Helper {
 			}
 		}" );
 
-		wp_enqueue_script( 'recaptcha-api-v2', 'https://www.google.com/recaptcha/api.js?onload=lsrecaptcha2', array(), null );
+		wp_enqueue_script( 'recaptcha-api-v2', 'https://www.google.com/recaptcha/api.js?onload=lsrecaptcha2', array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters,PluginCheck.CodeAnalysis.EnqueuedResourceOffloading.OffloadedContent -- Needed for Google reCAPTCHA service.
 		wp_add_inline_script( 'recaptcha-api-v2', $script, 'before' );
 		wp_localize_script( 'recaptcha-api-v2', 'stgrecaptcha2', array() );
 		?>
@@ -139,7 +139,7 @@ class STLSR_Helper {
 			array(
 				'body' => array(
 					'secret'   => $captcha['secret_key'],
-					'response' => $_POST['g-recaptcha-response'],
+					'response' => sanitize_text_field( wp_unslash( $_POST['g-recaptcha-response'] ) ), // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing -- Validated before already.
 				),
 			)
 		);
@@ -235,7 +235,7 @@ class STLSR_Helper {
 			}" );
 		}
 
-		wp_enqueue_script( 'recaptcha-api-v3', ( 'https://www.google.com/recaptcha/api.js?onload=lsrecaptcha3&render=' . esc_attr( $captcha['site_key'] ) . '&badge=' . esc_attr( $captcha['badge'] ) ), array(), null );
+		wp_enqueue_script( 'recaptcha-api-v3', ( 'https://www.google.com/recaptcha/api.js?onload=lsrecaptcha3&render=' . esc_attr( $captcha['site_key'] ) . '&badge=' . esc_attr( $captcha['badge'] ) ), array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters,PluginCheck.CodeAnalysis.EnqueuedResourceOffloading.OffloadedContent -- Needed for Google reCAPTCHA service.
 		wp_add_inline_script( 'recaptcha-api-v3', $script, 'before' );
 		wp_localize_script( 'recaptcha-api-v3', 'stgrecaptcha3', array() );
 		?>
@@ -249,7 +249,7 @@ class STLSR_Helper {
 			array(
 				'body' => array(
 					'secret'   => $captcha['secret_key'],
-					'response' => $_POST['g-recaptcha-response'],
+					'response' => sanitize_text_field( wp_unslash( $_POST['g-recaptcha-response'] ) ), // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing -- Validated before already.
 					'remoteip' => $ip_address,
 				),
 			)
@@ -344,7 +344,7 @@ class STLSR_Helper {
 			}
 		}" );
 
-		wp_enqueue_script( 'cf-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=lscfturnstile', array(), null );
+		wp_enqueue_script( 'cf-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=lscfturnstile', array(), null ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters,PluginCheck.CodeAnalysis.EnqueuedResourceOffloading.OffloadedContent -- Needed for Cloudflare Turnstile CAPTCHA service.
 		wp_add_inline_script( 'cf-turnstile', $script, 'before' );
 		wp_localize_script( 'cf-turnstile', 'ststcfturnstile', array() );
 		?>
@@ -358,7 +358,7 @@ class STLSR_Helper {
 			array(
 				'body' => array(
 					'secret'   => $captcha['secret_key'],
-					'response' => $_POST['cf-turnstile-response'],
+					'response' => sanitize_text_field( wp_unslash( $_POST['cf-turnstile-response'] ) ), // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing -- Validated before already.
 					'remoteip' => $ip_address,
 				),
 			)
@@ -446,17 +446,17 @@ class STLSR_Helper {
 
 	public static function get_msg() {
 		return array(
-			'captcha_error' => __( '<strong>Error:</strong> Please confirm you are not a robot.', 'login-security-pro' ),
+			'captcha_error' => __( '<strong>Error:</strong> Please confirm you are not a robot.', 'login-security-recaptcha' ),
 		);
 	}
 
 	public static function get_ip_address() {
 		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-			$ip = sanitize_text_field( $_SERVER['HTTP_CLIENT_IP'] );
+			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
 		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$ip = sanitize_text_field( $_SERVER['HTTP_X_FORWARDED_FOR'] );
+			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
 		} else {
-			$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? sanitize_text_field( $_SERVER['REMOTE_ADDR'] ) : '0.0.0.0';
+			$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '0.0.0.0';
 		}
 
 		$ip = filter_var( $ip, FILTER_VALIDATE_IP );
@@ -539,6 +539,6 @@ class STLSR_Helper {
 
 	public static function is_wp_login() {
 		$abspath = str_replace( array( '\\', '/' ), DIRECTORY_SEPARATOR, ABSPATH );
-		return ( ( in_array( $abspath . 'wp-login.php', get_included_files() ) ) || ( isset( $_GLOBALS['pagenow'] ) && 'wp-login.php' === $GLOBALS['pagenow'] ) || '/wp-login.php' === $_SERVER['PHP_SELF'] );
+		return ( ( in_array( $abspath . 'wp-login.php', get_included_files() ) ) || ( isset( $GLOBALS['pagenow'] ) && ( 'wp-login.php' === $GLOBALS['pagenow'] ) ) || ( isset( $_SERVER['PHP_SELF'] ) && ( '/wp-login.php' === $_SERVER['PHP_SELF'] ) ) );
 	}
 }

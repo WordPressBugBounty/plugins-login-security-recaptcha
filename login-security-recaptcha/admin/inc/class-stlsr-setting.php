@@ -52,45 +52,45 @@ class STLSR_Setting {
 			die();
 		}
 
-		if ( ! isset( $_POST['save-captcha'] ) || ! wp_verify_nonce( $_POST['save-captcha'], 'save-captcha' ) ) {
+		if ( ! isset( $_POST['save-captcha'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['save-captcha'] ) ), 'save-captcha' ) ) {
 			die();
 		}
 
 		$grecaptcha_v2_default = STLSR_Helper::grecaptcha_v2_default();
 
-		$grecaptcha_v2_site_key   = isset( $_POST['grecaptcha_v2_site_key'] ) ? sanitize_text_field( $_POST['grecaptcha_v2_site_key'] ) : '';
-		$grecaptcha_v2_secret_key = isset( $_POST['grecaptcha_v2_secret_key'] ) ? sanitize_text_field( $_POST['grecaptcha_v2_secret_key'] ) : '';
-		$grecaptcha_v2_theme      = isset( $_POST['grecaptcha_v2_theme'] ) ? sanitize_text_field( $_POST['grecaptcha_v2_theme'] ) : $grecaptcha_v2_default['theme'];
+		$grecaptcha_v2_site_key   = isset( $_POST['grecaptcha_v2_site_key'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v2_site_key'] ) ) : '';
+		$grecaptcha_v2_secret_key = isset( $_POST['grecaptcha_v2_secret_key'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v2_secret_key'] ) ) : '';
+		$grecaptcha_v2_theme      = isset( $_POST['grecaptcha_v2_theme'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v2_theme'] ) ) : $grecaptcha_v2_default['theme'];
 
 		$grecaptcha_v3_default = STLSR_Helper::grecaptcha_v3_default();
 
-		$grecaptcha_v3_site_key   = isset( $_POST['grecaptcha_v3_site_key'] ) ? sanitize_text_field( $_POST['grecaptcha_v3_site_key'] ) : '';
-		$grecaptcha_v3_secret_key = isset( $_POST['grecaptcha_v3_secret_key'] ) ? sanitize_text_field( $_POST['grecaptcha_v3_secret_key'] ) : '';
-		$grecaptcha_v3_score      = isset( $_POST['grecaptcha_v3_score'] ) ? sanitize_text_field( $_POST['grecaptcha_v3_score'] ) : $grecaptcha_v3_default['score'];
-		$grecaptcha_v3_badge      = isset( $_POST['grecaptcha_v3_badge'] ) ? sanitize_text_field( $_POST['grecaptcha_v3_badge'] ) : $grecaptcha_v3_default['badge'];
+		$grecaptcha_v3_site_key   = isset( $_POST['grecaptcha_v3_site_key'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v3_site_key'] ) ) : '';
+		$grecaptcha_v3_secret_key = isset( $_POST['grecaptcha_v3_secret_key'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v3_secret_key'] ) ) : '';
+		$grecaptcha_v3_score      = isset( $_POST['grecaptcha_v3_score'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v3_score'] ) ) : $grecaptcha_v3_default['score'];
+		$grecaptcha_v3_badge      = isset( $_POST['grecaptcha_v3_badge'] ) ? sanitize_text_field( wp_unslash( $_POST['grecaptcha_v3_badge'] ) ) : $grecaptcha_v3_default['badge'];
 		$grecaptcha_v3_onaction   = isset( $_POST['grecaptcha_v3_onaction'] ) ? (bool) $_POST['grecaptcha_v3_onaction'] : false;
 
 		$cf_turnstile_default = STLSR_Helper::cf_turnstile_default();
 
-		$cf_turnstile_site_key    = isset( $_POST['cf_turnstile_site_key'] ) ? sanitize_text_field( $_POST['cf_turnstile_site_key'] ) : '';
-		$cf_turnstile_secret_key  = isset( $_POST['cf_turnstile_secret_key'] ) ? sanitize_text_field( $_POST['cf_turnstile_secret_key'] ) : '';
-		$cf_turnstile_theme       = isset( $_POST['cf_turnstile_theme'] ) ? sanitize_text_field( $_POST['cf_turnstile_theme'] ) : $cf_turnstile_default['theme'];
-		$cf_turnstile_size        = isset( $_POST['cf_turnstile_size'] ) ? sanitize_text_field( $_POST['cf_turnstile_size'] ) : $cf_turnstile_default['size'];
+		$cf_turnstile_site_key    = isset( $_POST['cf_turnstile_site_key'] ) ? sanitize_text_field( wp_unslash( $_POST['cf_turnstile_site_key'] ) ) : '';
+		$cf_turnstile_secret_key  = isset( $_POST['cf_turnstile_secret_key'] ) ? sanitize_text_field( wp_unslash( $_POST['cf_turnstile_secret_key'] ) ) : '';
+		$cf_turnstile_theme       = isset( $_POST['cf_turnstile_theme'] ) ? sanitize_text_field( wp_unslash( $_POST['cf_turnstile_theme'] ) ) : $cf_turnstile_default['theme'];
+		$cf_turnstile_size        = isset( $_POST['cf_turnstile_size'] ) ? sanitize_text_field( wp_unslash( $_POST['cf_turnstile_size'] ) ) : $cf_turnstile_default['size'];
 		$cf_turnstile_disable_btn = isset( $_POST['cf_turnstile_disable_btn'] ) ? (bool) $_POST['cf_turnstile_disable_btn'] : false;
 
 		$capt_login_enable = isset( $_POST['capt_login_enable'] ) ? (bool) $_POST['capt_login_enable'] : false;
-		$capt_login        = isset( $_POST['capt_login'] ) ? sanitize_text_field( $_POST['capt_login'] ) : '';
+		$capt_login        = isset( $_POST['capt_login'] ) ? sanitize_text_field( wp_unslash( $_POST['capt_login'] ) ) : '';
 
 		$capt_lostpassword_enable = isset( $_POST['capt_lostpassword_enable'] ) ? (bool) $_POST['capt_lostpassword_enable'] : false;
-		$capt_lostpassword        = isset( $_POST['capt_lostpassword'] ) ? sanitize_text_field( $_POST['capt_lostpassword'] ) : '';
+		$capt_lostpassword        = isset( $_POST['capt_lostpassword'] ) ? sanitize_text_field( wp_unslash( $_POST['capt_lostpassword'] ) ) : '';
 
 		$capt_register_enable = isset( $_POST['capt_register_enable'] ) ? (bool) $_POST['capt_register_enable'] : false;
-		$capt_register        = isset( $_POST['capt_register'] ) ? sanitize_text_field( $_POST['capt_register'] ) : '';
+		$capt_register        = isset( $_POST['capt_register'] ) ? sanitize_text_field( wp_unslash( $_POST['capt_register'] ) ) : '';
 
 		$capt_comment_default = STLSR_Helper::capt_comment_default();
 
 		$capt_comment_enable    = isset( $_POST['capt_comment_enable'] ) ? (bool) $_POST['capt_comment_enable'] : false;
-		$capt_comment           = isset( $_POST['capt_comment'] ) ? sanitize_text_field( $_POST['capt_comment'] ) : '';
+		$capt_comment           = isset( $_POST['capt_comment'] ) ? sanitize_text_field( wp_unslash( $_POST['capt_comment'] ) ) : '';
 		$capt_comment_logged_in = isset( $_POST['capt_comment_logged_in'] ) ? (bool) $_POST['capt_comment_logged_in'] : false;
 
 		$errors = array();
@@ -216,7 +216,7 @@ class STLSR_Setting {
 			die();
 		}
 
-		if ( ! isset( $_POST['reset-plugin'] ) || ! wp_verify_nonce( $_POST['reset-plugin'], 'reset-plugin' ) ) {
+		if ( ! isset( $_POST['reset-plugin'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['reset-plugin'] ) ), 'reset-plugin' ) ) {
 			die();
 		}
 
@@ -238,7 +238,7 @@ class STLSR_Setting {
 			die();
 		}
 
-		if ( ! isset( $_POST['clear-error-logs'] ) || ! wp_verify_nonce( $_POST['clear-error-logs'], 'clear-error-logs' ) ) {
+		if ( ! isset( $_POST['clear-error-logs'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['clear-error-logs'] ) ), 'clear-error-logs' ) ) {
 			die();
 		}
 
