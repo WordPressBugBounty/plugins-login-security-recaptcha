@@ -366,11 +366,26 @@ class STLSR_Captcha {
 		if ( $capt['enable'] ) {
 			if ( ! is_user_logged_in() || $capt['logged_in'] ) {
 				STLSR_Helper::show_captcha( 'comment', $capt );
+
+				if ( 'cf_turnstile' === $capt['captcha'] ) {
+					$script = ( "document.addEventListener('DOMContentLoaded', function() {
+						document.body.addEventListener('click', function(e) {
+							if(e.target.matches('.comment-reply-link, #cancel-comment-reply-link')) {
+								if(('undefined' !== typeof turnstile) && ('function' === typeof turnstile.reset)) { turnstile.reset(ststcfturnstile['comment']); }
+							}
+						});
+					})" );
+					wp_add_inline_script( 'cf-turnstile', $script );
+				}
 			}
 		}
 	}
 
 	public static function comment_verify_captcha( $commentdata ) {
+		if ( is_admin() ) {
+			return $commentdata;
+		}
+
 		$capt = STLSR_Helper::capt_comment();
 
 		if ( is_user_logged_in() && ! $capt['logged_in'] ) {

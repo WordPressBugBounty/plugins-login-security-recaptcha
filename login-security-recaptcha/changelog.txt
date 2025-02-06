@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.7.3 =
+* Skip captcha validation for comment replies from the admin screen.
+
 = 1.7.2 =
 * Code improvements.
 
