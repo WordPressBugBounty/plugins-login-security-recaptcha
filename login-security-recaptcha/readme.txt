@@ -2,8 +2,8 @@
 Contributors: scriptstown
 Tags: login, captcha, cloudflare, recaptcha, security
 Donate link: https://scriptstown.com/
-Tested up to: 6.7
-Stable tag: 1.7.3
+Tested up to: 6.8
+Stable tag: 1.7.4
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,9 @@ Using this security plugin, you can change the captcha theme to light or dark de
 7. Monitor Captcha Error Logs
 
 == Changelog ==
+
+= 1.7.4 =
+* Tested up to 6.8.
 
 = 1.7.3 =
 * Skip captcha validation for comment replies from the admin screen.

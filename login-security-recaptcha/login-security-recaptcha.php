@@ -3,7 +3,7 @@
  * Plugin Name: Login Security Captcha
  * Plugin URI: https://scriptstown.com/wordpress-plugins/login-security-recaptcha/
  * Description: Secure WordPress login, registration, and comment form with Google reCAPTCHA or Cloudflare Turnstile. Prevent Brute-force attacks and more.
- * Version: 1.7.3
+ * Version: 1.7.4
  * Author: ScriptsTown
  * Author URI: https://scriptstown.com/
  * License: GPL v2 or later
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-define( 'STLSR_PLUGIN_VERSION', '1.7.3' );
+define( 'STLSR_PLUGIN_VERSION', '1.7.4' );
 define( 'STLSR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'STLSR_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'STLSR_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
