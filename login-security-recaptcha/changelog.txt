@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.7.5 =
+* Tested up to 6.8.1.
+* Readme updated.
+
 = 1.7.4 =
 * Tested up to 6.8.
 
