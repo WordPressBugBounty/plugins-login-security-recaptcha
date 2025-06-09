@@ -223,7 +223,7 @@ if ( $cf_turnstile_enable ) {
 
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Captcha Settings', 'login-security-recaptcha' ); ?></th>
-						<td>
+						<td class="stls-selection-tabs">
 							<fieldset>
 								<legend class="screen-reader-text">
 									<span><?php esc_html_e( 'Set Captcha Settings', 'login-security-recaptcha' ); ?></span>
@@ -231,7 +231,7 @@ if ( $cf_turnstile_enable ) {
 								<?php
 								foreach ( $captcha_list as $key => $value ) {
 									?>
-								<span class="stls-mr">
+								<span class="stls-selection-tab">
 									<label>
 										<?php reset( $captcha_list ); ?>
 										<input <?php checked( ( key( $captcha_list ) === $key ), true, true ); ?> type="radio" name="captcha" value="<?php echo esc_attr( $key ); ?>">

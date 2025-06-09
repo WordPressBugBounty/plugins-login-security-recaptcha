@@ -85,6 +85,56 @@
 	background-color: #ddd;
 }
 
+.stls-selection-tab {
+	margin-left: .5em;
+}
+
+.stls-selection-tabs input[type="radio"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.stls-selection-tabs label {
+	cursor: pointer;
+	position: relative;
+}
+
+.stls-selection-tabs label span {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-left: 0;
+	font-weight: 600;
+	line-height: 1.71428571;
+	border: 1px solid #c3c4c7;
+	background: #dcdcde;
+	color: #50575e;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.stls-selection-tabs input[type="radio"]:checked+span {
+	position: relative;
+	z-index: 1;
+	font-weight: 600;
+	background: #fff;
+	color: #000;
+}
+
+.stls-selection-tabs input[type="radio"]:focus+span {
+	box-shadow: 0 0 0 2px #2271b1;
+	outline: 2px solid transparent;
+}
+
+.stls-selection-tabs input[type="radio"]:focus:active+span {
+	box-shadow: none;
+}
+
 .stlsr-tab-heading,
 .stlsr-tab-heading-btn {
 	display: inline-block;
