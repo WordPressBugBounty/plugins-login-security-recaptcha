@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.7.7 =
+* Code improvements.
+* Readme updated.
+
 = 1.7.6 =
 * Settings UI improvements.
 

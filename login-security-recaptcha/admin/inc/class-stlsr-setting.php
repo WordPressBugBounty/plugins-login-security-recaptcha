@@ -228,6 +228,7 @@ class STLSR_Setting {
 		delete_option( 'stlsr_register_captcha' );
 		delete_option( 'stlsr_comment_captcha' );
 		delete_option( 'stlsr_error_logs' );
+		delete_option( 'stlsr_misc' );
 		delete_option( 'stlsr_redirect_to_settings' );
 
 		wp_send_json_success( array( 'message' => esc_html__( 'The plugin has been reset to its default state.', 'login-security-recaptcha' ) ) );
@@ -245,5 +246,61 @@ class STLSR_Setting {
 		update_option( 'stlsr_error_logs', array(), true );
 
 		wp_send_json_success( array( 'message' => esc_html__( 'The error logs have been cleared successfully.', 'login-security-recaptcha' ) ) );
+	}
+
+	public static function save_options() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			die();
+		}
+
+		if ( ! isset( $_POST['save-options'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['save-options'] ) ), 'save-options' ) ) {
+			die();
+		}
+
+		$misc_default = STLSR_Helper::misc_default();
+
+		$ip_header = isset( $_POST['ip_header'] ) ? sanitize_text_field( wp_unslash( $_POST['ip_header'] ) ) : $misc_default['ip_header'];
+
+		$errors = array();
+
+		if ( ! in_array( $ip_header, array_keys( STLSR_Helper::ip_headers() ), true ) ) {
+			$ip_header = $misc_default['ip_header'];
+		}
+
+		update_option(
+			'stlsr_misc',
+			array(
+				'ip_header' => $ip_header,
+			)
+		);
+
+		if ( count( $errors ) < 1 ) {
+			wp_send_json_success( array( 'message' => esc_html__( 'Setting saved.', 'login-security-recaptcha' ) ) );
+		}
+
+		wp_send_json_error( $errors );
+	}
+
+	public static function refresh_ip() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			die();
+		}
+
+		if ( ! isset( $_POST['refresh-ip'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['refresh-ip'] ) ), 'refresh-ip' ) ) {
+			die();
+		}
+
+		$misc_default = STLSR_Helper::misc_default();
+
+		$ip_header = isset( $_POST['ip_header'] ) ? sanitize_text_field( wp_unslash( $_POST['ip_header'] ) ) : $misc_default['ip_header'];
+
+		$info = STLSR_Helper::get_ip_header_info( $ip_header );
+
+		wp_send_json_success(
+			array(
+				'ipAddress'    => esc_html( $info['ip'] ),
+				'ipHeaderInfo' => esc_html( $info['note'] ),
+			)
+		);
 	}
 }

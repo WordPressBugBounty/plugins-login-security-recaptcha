@@ -233,5 +233,71 @@
 			}
 		});
 
+		// Save options.
+		var saveOptionsFormId = '#stlsr-save-options-form';
+		var saveOptionsForm = $(saveOptionsFormId);
+		var saveOptionsBtn = $('#stlsr-save-options-btn');
+		saveOptionsForm.ajaxForm({
+			beforeSubmit: function(arr, $form, options) {
+				return stlsrBeforeSubmit(saveOptionsBtn);
+			},
+			success: function(response) {
+				if(response.success) {
+					stlsrSuccessMessage(response.data.message, saveOptionsFormId);
+				} else {
+					if(response.data && $.isPlainObject(response.data)) {
+						stlsrFormErrors(saveOptionsFormId, response);
+					} else {
+						stlsrErrorMessage(response.data, saveOptionsFormId);
+					}
+				}
+			},
+			error: function(response) {
+				saveOptionsBtn.prop('disabled', false);
+				stlsrErrorMessage(response.status, saveOptionsFormId, response.statusText);
+			},
+			complete: function(event, xhr, settings) {
+				saveOptionsBtn.prop('disabled', false);
+				loadingContainer.remove();
+			}
+		});
+
+		// Refresh IP.
+		$(document).on('click', '#stls-refresh-ip', function(e) {
+			e.preventDefault();
+			var yourIP = $('#stls-your-ip');
+			var button = $(this);
+			var nonce = $('#stls-check-ip').data('nonce');
+			var ipHeader = $('#stlsr_ip_header').find(":selected").val();
+
+			$.ajax({
+				data: 'ip_header=' + ipHeader + '&refresh-ip=' + nonce + '&action=stlsr-refresh-ip',
+				url: ajaxurl,
+				type: 'POST',
+				beforeSend: function(xhr) {
+					yourIP.hide();
+					return stlsrBeforeSubmit(button);
+				},
+				success: function(response) {
+					if(response.success) {
+						yourIP.show();
+						$('#stls-your-ip strong').text(response.data.ipAddress)
+						$('#stls-ip-header-info').text(response.data.ipHeaderInfo)
+					} else {
+						yourIP.hide();
+						stlsrErrorMessage(response.data, saveOptionsFormId);
+					}
+				},
+				error: function(response) {
+					yourIP.hide();
+					stlsrErrorMessage(response.status, saveOptionsFormId, response.statusText);
+				},
+				complete: function(xhr, status) {
+					button.prop('disabled', false);
+					loadingContainer.remove();
+				}
+			});
+		});
+
 	});
 })(jQuery);

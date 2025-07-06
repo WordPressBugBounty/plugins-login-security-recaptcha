@@ -250,7 +250,6 @@ class STLSR_Helper {
 				'body' => array(
 					'secret'   => $captcha['secret_key'],
 					'response' => sanitize_text_field( wp_unslash( $_POST['g-recaptcha-response'] ) ), // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing -- Validated before already.
-					'remoteip' => $ip_address,
 				),
 			)
 		);
@@ -359,7 +358,6 @@ class STLSR_Helper {
 				'body' => array(
 					'secret'   => $captcha['secret_key'],
 					'response' => sanitize_text_field( wp_unslash( $_POST['cf-turnstile-response'] ) ), // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing -- Validated before already.
-					'remoteip' => $ip_address,
 				),
 			)
 		);
@@ -451,10 +449,22 @@ class STLSR_Helper {
 	}
 
 	public static function get_ip_address() {
-		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
-		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+		$misc = self::misc();
+
+		$ip_header = $misc['ip_header'];
+		if ( ! in_array( $ip_header, array_keys( self::ip_headers() ), true ) ) {
+			$default   = self::misc_default();
+			$ip_header = $default['ip_header'];
+		}
+
+		if ( isset( $_SERVER[ $ip_header ] ) && ! empty( $_SERVER[ $ip_header ] ) ) {
+			if ( 'HTTP_X_FORWARDED_FOR' === $ip_header ) {
+				// Make sure to only send the first IP in the list.
+				$ip = trim( current( preg_split( '/,/', sanitize_text_field( wp_unslash( $_SERVER[ $ip_header ] ) ) ) ) );
+				$ip = preg_replace( '/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\:.*|\[([^]]+)\].*/', '$1$2', $ip );
+			} else {
+				$ip = sanitize_text_field( wp_unslash( $_SERVER[ $ip_header ] ) );
+			}
 		} else {
 			$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '0.0.0.0';
 		}
@@ -463,6 +473,70 @@ class STLSR_Helper {
 		$ip = ( false === $ip ) ? '0.0.0.0' : $ip;
 
 		return $ip;
+	}
+
+	public static function get_ip_header_info( $ip_header ) {
+		if ( ! in_array( $ip_header, array_keys( self::ip_headers() ), true ) ) {
+			$default   = self::misc_default();
+			$ip_header = $default['ip_header'];
+		}
+
+		/* translators: %s: IP header. */
+		$note = sprintf( __( 'header set: %s', 'login-security-recaptcha' ), $ip_header );
+
+		if ( isset( $_SERVER[ $ip_header ] ) && ! empty( $_SERVER[ $ip_header ] ) ) {
+			if ( 'HTTP_X_FORWARDED_FOR' === $ip_header ) {
+				// Make sure to only send the first IP in the list.
+				$ip = trim( current( preg_split( '/,/', sanitize_text_field( wp_unslash( $_SERVER[ $ip_header ] ) ) ) ) );
+				$ip = preg_replace( '/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\:.*|\[([^]]+)\].*/', '$1$2', $ip );
+			} else {
+				$ip = sanitize_text_field( wp_unslash( $_SERVER[ $ip_header ] ) );
+			}
+		} else {
+			$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '0.0.0.0';
+
+			/* translators: %s: IP header. */
+			$note = sprintf( __( 'header not set: %s, using fallback: REMOTE_ADDR', 'login-security-recaptcha' ), $ip_header );
+		}
+
+		$ip = filter_var( $ip, FILTER_VALIDATE_IP );
+		$ip = ( false === $ip ) ? '0.0.0.0' : $ip;
+
+		return array(
+			'ip'   => $ip,
+			'note' => $note,
+		);
+	}
+
+	public static function ip_headers() {
+		return array(
+			'REMOTE_ADDR'            => __( 'REMOTE_ADDR - Use PHP\'s built-in REMOTE_ADDR. Most secure if compatible with your setup.', 'login-security-recaptcha' ),
+			'HTTP_CF_CONNECTING_IP'  => __( 'HTTP_CF_CONNECTING_IP - Use Cloudflare\'s "CF-Connecting-IP" header. Only use if your site is behind Cloudflare.', 'login-security-recaptcha' ),
+			'HTTP_X_SUCURI_CLIENTIP' => __( 'HTTP_X_SUCURI_CLIENTIP - Use this header if your site is behind Sucuri Web Application Firewall (WAF).', 'login-security-recaptcha' ),
+			'HTTP_TRUE_CLIENT_IP'    => __( 'HTTP_TRUE_CLIENT_IP - Used by some proxy services (e.g., Akamai) to forward the client\'s real IP address.', 'login-security-recaptcha' ),
+			'HTTP_X_REAL_IP'         => __( 'HTTP_X_REAL_IP - Common header set by reverse proxies like Nginx to pass the real client IP.', 'login-security-recaptcha' ),
+			'HTTP_CLIENT_IP'         => __( 'HTTP_CLIENT_IP - May be set by certain proxy servers. Use only if necessary and validated.', 'login-security-recaptcha' ),
+			'HTTP_X_FORWARDED_FOR'   => __( 'HTTP_X_FORWARDED_FOR - Use the "X-Forwarded-For" header. Common with proxies and load balancers.', 'login-security-recaptcha' ),
+		);
+	}
+
+	public static function misc_default() {
+		return array(
+			'ip_header' => 'REMOTE_ADDR',
+		);
+	}
+
+	public static function misc() {
+		$options = get_option( 'stlsr_misc', array() );
+		if ( ! is_array( $options ) ) {
+			$options = array();
+		}
+
+		$default = self::misc_default();
+
+		return array(
+			'ip_header' => isset( $options['ip_header'] ) ? esc_attr( $options['ip_header'] ) : $default['ip_header'],
+		);
 	}
 
 	public static function wp_date( $format, $timestamp = null, $timezone = null ) {

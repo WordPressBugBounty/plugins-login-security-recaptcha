@@ -6,6 +6,7 @@ $menu_tab = ( isset( $_GET['tab'] ) && ! empty( $_GET['tab'] ) ) ? sanitize_text
 $menu_tabs = array(
 	'captcha'    => esc_html__( 'Captcha', 'login-security-recaptcha' ),
 	'error_logs' => esc_html__( 'Error Logs', 'login-security-recaptcha' ),
+	'options'    => esc_html__( 'Options', 'login-security-recaptcha' ),
 	'reset'      => esc_html__( 'Reset', 'login-security-recaptcha' ),
 );
 ?>
@@ -47,6 +48,8 @@ $menu_tabs = array(
 		require_once STLSR_PLUGIN_DIR_PATH . 'admin/inc/setting/tabs/captcha.php';
 	} elseif ( 'error_logs' === $menu_tab ) {
 		require_once STLSR_PLUGIN_DIR_PATH . 'admin/inc/setting/tabs/error-logs.php';
+	} elseif ( 'options' === $menu_tab ) {
+		require_once STLSR_PLUGIN_DIR_PATH . 'admin/inc/setting/tabs/options.php';
 	} elseif ( 'reset' === $menu_tab ) {
 		require_once STLSR_PLUGIN_DIR_PATH . 'admin/inc/setting/tabs/reset.php';
 	}

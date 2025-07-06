@@ -17,3 +17,7 @@ add_action( 'wp_ajax_stlsr-save-captcha', array( 'STLSR_Setting', 'save_captcha'
 add_action( 'wp_ajax_stlsr-clear-error-logs', array( 'STLSR_Setting', 'clear_error_logs' ) );
 
 add_action( 'wp_ajax_stlsr-reset-plugin', array( 'STLSR_Setting', 'reset_plugin' ) );
+
+add_action( 'wp_ajax_stlsr-save-options', array( 'STLSR_Setting', 'save_options' ) );
+
+add_action( 'wp_ajax_stlsr-refresh-ip', array( 'STLSR_Setting', 'refresh_ip' ) );

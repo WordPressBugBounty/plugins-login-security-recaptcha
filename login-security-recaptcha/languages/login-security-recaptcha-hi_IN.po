@@ -2,11 +2,11 @@
 # This file is distributed under the same license as the Login Security Captcha plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Login Security Captcha 1.7.6\n"
+"Project-Id-Version: Login Security Captcha 1.7.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/login-security-"
 "recaptcha\n"
-"POT-Creation-Date: 2025-06-09T10:42:09+00:00\n"
-"PO-Revision-Date: 2025-06-09 16:12+0530\n"
+"POT-Creation-Date: 2025-07-06T17:56:12+00:00\n"
+"PO-Revision-Date: 2025-07-06 23:26+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hi_IN\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: login-security-recaptcha.php admin/inc/class-stlsr-admin-menu.php:10
-#: admin/inc/class-stlsr-admin-menu.php:13 admin/inc/setting/index.php:29
+#: admin/inc/class-stlsr-admin-menu.php:13 admin/inc/setting/index.php:30
 msgid "Login Security Captcha"
 msgstr "लॉगिन सुरक्षा कैप्चा"
 
@@ -75,15 +75,15 @@ msgstr "लॉगिन सुरक्षा रिकैप्चा"
 msgid "Please select valid captcha."
 msgstr "वैध कैप्चा का चयन करें।"
 
-#: admin/inc/class-stlsr-setting.php:208
+#: admin/inc/class-stlsr-setting.php:208 admin/inc/class-stlsr-setting.php:278
 msgid "Setting saved."
 msgstr "सेटिंग सहेजी गई।"
 
-#: admin/inc/class-stlsr-setting.php:233
+#: admin/inc/class-stlsr-setting.php:234
 msgid "The plugin has been reset to its default state."
 msgstr ""
 
-#: admin/inc/class-stlsr-setting.php:247
+#: admin/inc/class-stlsr-setting.php:248
 msgid "The error logs have been cleared successfully."
 msgstr ""
 
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Advanced Security & More"
 msgstr "लॉगिन सुरक्षा"
 
-#: admin/inc/partials/pro.php:34 admin/inc/setting/index.php:22
+#: admin/inc/partials/pro.php:34 admin/inc/setting/index.php:23
 msgid "Buy Now"
 msgstr ""
 
@@ -155,20 +155,24 @@ msgid "Error Logs"
 msgstr "त्रुटि लॉग"
 
 #: admin/inc/setting/index.php:9
+msgid "Options"
+msgstr ""
+
+#: admin/inc/setting/index.php:10
 msgid "Reset"
 msgstr "रीसेट"
 
-#: admin/inc/setting/index.php:17
+#: admin/inc/setting/index.php:18
 #, fuzzy
 #| msgid "Login Security"
 msgid "Upgrade to Login Security Pro"
 msgstr "लॉगिन सुरक्षा"
 
-#: admin/inc/setting/index.php:20
+#: admin/inc/setting/index.php:21
 msgid "Upgrade to <span>Pro</span> Version"
 msgstr ""
 
-#: admin/inc/setting/index.php:23
+#: admin/inc/setting/index.php:24
 msgid "More Detail"
 msgstr ""
 
@@ -367,7 +371,7 @@ msgid ""
 "<br>You may uncheck this only if you face issues with reCAPTCHA v3."
 msgstr ""
 
-#: admin/inc/setting/tabs/captcha.php:509
+#: admin/inc/setting/tabs/captcha.php:509 admin/inc/setting/tabs/options.php:51
 msgid "Save Changes"
 msgstr ""
 
@@ -413,6 +417,36 @@ msgstr ""
 
 #: admin/inc/setting/tabs/error-logs.php:52
 msgid "There was no error."
+msgstr ""
+
+#: admin/inc/setting/tabs/options.php:20 admin/inc/setting/tabs/options.php:24
+msgid "IP Detection - Header to Use for Visitor IP"
+msgstr ""
+
+#: admin/inc/setting/tabs/options.php:33
+msgid ""
+"Select which server header should be used primarily to determine the "
+"visitor's IP address. If you're not sure, leave this as the default "
+"(`REMOTE_ADDR`). Only change this if your site is behind a proxy or firewall "
+"(like Cloudflare), and you know the correct header to trust."
+msgstr ""
+
+#: admin/inc/setting/tabs/options.php:37
+#, fuzzy
+#| msgid "IP Address"
+msgid "Check Your IP Address"
+msgstr "आईपी एड्रेस"
+
+#: admin/inc/setting/tabs/options.php:38
+#, fuzzy
+#| msgid "IP Address"
+msgid "Your IP Address:"
+msgstr "आईपी एड्रेस"
+
+#: admin/inc/setting/tabs/options.php:41
+msgid ""
+"With the above selection, make sure the expected server header is set "
+"without using fallback and you see your correct IP address."
 msgstr ""
 
 #: admin/inc/setting/tabs/reset.php:13
@@ -505,8 +539,60 @@ msgstr ""
 msgid "Compact"
 msgstr ""
 
-#: includes/class-stlsr-helper.php:449
+#: includes/class-stlsr-helper.php:447
 msgid "<strong>Error:</strong> Please confirm you are not a robot."
+msgstr ""
+
+#. translators: %s: IP header.
+#: includes/class-stlsr-helper.php:485
+msgid "header set: %s"
+msgstr ""
+
+#. translators: %s: IP header.
+#: includes/class-stlsr-helper.php:499
+msgid "header not set: %s, using fallback: REMOTE_ADDR"
+msgstr ""
+
+#: includes/class-stlsr-helper.php:513
+msgid ""
+"REMOTE_ADDR - Use PHP's built-in REMOTE_ADDR. Most secure if compatible with "
+"your setup."
+msgstr ""
+
+#: includes/class-stlsr-helper.php:514
+msgid ""
+"HTTP_CF_CONNECTING_IP - Use Cloudflare's \"CF-Connecting-IP\" header. Only "
+"use if your site is behind Cloudflare."
+msgstr ""
+
+#: includes/class-stlsr-helper.php:515
+msgid ""
+"HTTP_X_SUCURI_CLIENTIP - Use this header if your site is behind Sucuri Web "
+"Application Firewall (WAF)."
+msgstr ""
+
+#: includes/class-stlsr-helper.php:516
+msgid ""
+"HTTP_TRUE_CLIENT_IP - Used by some proxy services (e.g., Akamai) to forward "
+"the client's real IP address."
+msgstr ""
+
+#: includes/class-stlsr-helper.php:517
+msgid ""
+"HTTP_X_REAL_IP - Common header set by reverse proxies like Nginx to pass the "
+"real client IP."
+msgstr ""
+
+#: includes/class-stlsr-helper.php:518
+msgid ""
+"HTTP_CLIENT_IP - May be set by certain proxy servers. Use only if necessary "
+"and validated."
+msgstr ""
+
+#: includes/class-stlsr-helper.php:519
+msgid ""
+"HTTP_X_FORWARDED_FOR - Use the \"X-Forwarded-For\" header. Common with "
+"proxies and load balancers."
 msgstr ""
 
 #: public/inc/class-stlsr-captcha.php:38

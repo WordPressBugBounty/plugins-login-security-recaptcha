@@ -163,6 +163,23 @@
 	margin-top: 1rem;
 }
 
+#stlsr_ip_header {
+	max-width: 50rem;
+}
+
+#stls-refresh-ip+.st-loading-container {
+	margin-top: 0;
+}
+
+#stls-refresh-ip+.st-loading-container img {
+	vertical-align: middle;
+}
+
+#stls-your-ip {
+	display: none;
+	margin-right: .25rem;
+}
+
 .stlsr-error-logs-section {
 	overflow-x: auto;
 }
