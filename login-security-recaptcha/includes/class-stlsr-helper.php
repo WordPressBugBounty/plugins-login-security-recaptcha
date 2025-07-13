@@ -606,8 +606,6 @@ class STLSR_Helper {
 			$date = wp_maybe_decline_date( $date, $format );
 		}
 
-		$date = apply_filters( 'wp_date', $date, $format, $timestamp, $timezone );
-
 		return $date;
 	}
 
