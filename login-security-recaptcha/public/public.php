@@ -1,10 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || die();
 
-require_once STLSR_PLUGIN_DIR_PATH . 'public/inc/class-stlsr-language.php';
 require_once STLSR_PLUGIN_DIR_PATH . 'public/inc/class-stlsr-captcha.php';
-
-add_action( 'init', array( 'STLSR_Language', 'load_translation' ) );
 
 add_action( 'login_form', array( 'STLSR_Captcha', 'login_form_captcha' ) );
 
