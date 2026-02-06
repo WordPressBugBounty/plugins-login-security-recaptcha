@@ -2,8 +2,8 @@
 Contributors: scriptstown
 Tags: login, captcha, cloudflare, recaptcha, security
 Donate link: https://scriptstown.com/
-Tested up to: 6.8
-Stable tag: 1.8.0
+Tested up to: 6.9
+Stable tag: 1.8.3
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,18 @@ Using this security plugin, you can change the captcha theme to light or dark de
 7. Monitor Captcha Error Logs
 
 == Changelog ==
+
+= 1.8.3 =
+* Code improvements.
+* Readme updated.
+
+= 1.8.2 =
+* Tested compatibility with PHP 8.5.
+* Readme updated.
+
+= 1.8.1 =
+* Code improvements.
+* Tested up to 6.9.
 
 = 1.8.0 =
 * Code improvements.
@@ -281,55 +293,3 @@ Using this security plugin, you can change the captcha theme to light or dark de
 
 = 1.2.0 =
 * Tested up to 5.6.
-
-= 1.1.6 =
-* Improved reCAPTCHA v3 verification in multiple forms of the same page.
-
-= 1.1.5 =
-* Updated readme text.
-
-= 1.1.4 =
-* Added welcome notice on activation.
-
-= 1.1.3 =
-* Tested up to 5.5.
-
-= 1.1.2 =
-* Fixed admin notice width issue.
-
-= 1.1.1 =
-* Redirect to settings after activation.
-
-= 1.1.0 =
-* Added Plugin URI.
-* Set local time zone for logs.
-* Compatibility with WooCommerce.
-* Added link to pro version.
-
-= 1.0.8 =
-* Tested up to 5.4.
-
-= 1.0.7 =
-* Code refactor.
-
-= 1.0.6 =
-* Tested up to 5.3.
-
-= 1.0.5 =
-* Moved menu under WordPress settings.
-
-= 1.0.4 =
-* Added permission checks for admin actions.
-* Added plugin action link.
-
-= 1.0.3 =
-* Added IP Address column in Error Logs.
-
-= 1.0.2 =
-* Added reCAPTCHA support for WordPress lost password and registration form.
-
-= 1.0.1 =
-* Added reCAPTCHA support for WordPress comment forms.
-
-= 1.0.0 =
-* New release.

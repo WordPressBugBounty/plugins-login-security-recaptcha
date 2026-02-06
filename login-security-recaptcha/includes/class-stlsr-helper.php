@@ -54,7 +54,7 @@ class STLSR_Helper {
 
 	public static function btn_selectors() {
 		return apply_filters(
-			'stls_captcha_btn_selectors',
+			'stplugls_captcha_btn_selectors', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Hook name is very unique.
 			array(
 				'login'        => '#loginform #wp-submit',
 				'lostpassword' => '#lostpasswordform #wp-submit',
