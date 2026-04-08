@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.8.6 =
+* Tested compatibility with PHP 8.5.5.
+* Readme updated.
+
 = 1.8.5 =
 * Code improvements.
 * Readme updated.
