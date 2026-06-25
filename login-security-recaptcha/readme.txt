@@ -3,7 +3,7 @@ Contributors: scriptstown
 Tags: login, captcha, cloudflare, recaptcha, security
 Donate link: https://scriptstown.com/
 Tested up to: 7.0
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,10 @@ Using this security plugin, you can change the captcha theme to light or dark de
 7. Monitor Captcha Error Logs
 
 == Changelog ==
+
+= 1.9.1 =
+* Code improvements.
+* Readme updated.
 
 = 1.9.0 =
 * Updated minimum WordPress version to 5.3.
@@ -270,51 +274,3 @@ Using this security plugin, you can change the captcha theme to light or dark de
 
 = 1.3.5 =
 * Improvement: Load plugin translations using the init action.
-
-= 1.3.4 =
-* Tested up to 5.9.
-
-= 1.3.3 =
-* New: Added option to show reCAPTCHA for logged-in users in comment form.
-
-= 1.3.2 =
-* Updated settings page design.
-
-= 1.3.1 =
-* Improvement: Compatibility with reCAPTCHA script being deferred.
-
-= 1.3.0 =
-* Improvement: Regenerate v3 token every 2 minutes to solve timeout error.
-
-= 1.2.9 =
-* Tested up to 5.8.
-
-= 1.2.8 =
-* Improvement: Settings page UI.
-* Improvement: Code cleanup.
-
-= 1.2.7 =
-* Updated pro banner placement.
-
-= 1.2.6 =
-* Improvement: Settings page.
-* Improvement: Code clean-up.
-
-= 1.2.5 =
-* Improvement: Upsell banner clean-up.
-
-= 1.2.4 =
-* Improvement: Removed version and changed handle name of reCAPTCHA API v2 and v3.
-
-= 1.2.3 =
-* Tested up to 5.7.
-
-= 1.2.2 =
-* Plugin settings page UI improvements.
-* Improved code.
-
-= 1.2.1 =
-* Compatibility with PHP 8.
-
-= 1.2.0 =
-* Tested up to 5.6.

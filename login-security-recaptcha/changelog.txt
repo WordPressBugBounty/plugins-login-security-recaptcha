@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.9.1 =
+* Code improvements.
+* Readme updated.
+
 = 1.9.0 =
 * Updated minimum WordPress version to 5.3.
 
