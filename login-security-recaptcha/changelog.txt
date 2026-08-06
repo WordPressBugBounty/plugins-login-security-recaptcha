@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 1.9.2 =
+* Improvement: Settings page.
+* Tested up to 7.1.
+
 = 1.9.1 =
 * Code improvements.
 * Readme updated.
