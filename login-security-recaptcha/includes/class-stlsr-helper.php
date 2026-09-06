@@ -353,7 +353,7 @@ class STLSR_Helper {
 
 	public static function verify_cf_turnstile( $captcha, $ip_address ) {
 		$response = wp_remote_post(
-			'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+			'https://challenges.cloudflare.com/turnstile/v0/siteverify', // phpcs:ignore PluginCheck.CodeAnalysis.Offloading.OffloadedContent -- Needed for Cloudflare Turnstile service.
 			array(
 				'body' => array(
 					'secret'   => $captcha['secret_key'],
