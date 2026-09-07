@@ -279,10 +279,6 @@ class STLSR_Captcha {
 						foreach ( $data->{'error-codes'} as $error_code ) {
 							STLSR_Logger::log_error( $error_code, $form, $capt['captcha'], $ip_address );
 						}
-
-						if ( 0 !== count( array_intersect( array( 'missing-input-secret', 'invalid-input-secret' ), $data->{'error-codes'} ) ) ) {
-							return $errors;
-						}
 					}
 
 					if ( isset( $data->success ) && ( true === $data->success ) ) {
@@ -306,10 +302,6 @@ class STLSR_Captcha {
 						require_once STLSR_PLUGIN_DIR_PATH . 'includes/class-stlsr-logger.php';
 						foreach ( $data->{'error-codes'} as $error_code ) {
 							STLSR_Logger::log_error( $error_code, $form, $capt['captcha'], $ip_address );
-						}
-
-						if ( 0 !== count( array_intersect( array( 'missing-input-secret', 'invalid-input-secret' ), $data->{'error-codes'} ) ) ) {
-							return $errors;
 						}
 					}
 
@@ -341,10 +333,6 @@ class STLSR_Captcha {
 						require_once STLSR_PLUGIN_DIR_PATH . 'includes/class-stlsr-logger.php';
 						foreach ( $data->{'error-codes'} as $error_code ) {
 							STLSR_Logger::log_error( $error_code, $form, $capt['captcha'], $ip_address );
-						}
-
-						if ( 0 !== count( array_intersect( array( 'missing-input-secret', 'invalid-input-secret' ), $data->{'error-codes'} ) ) ) {
-							return $errors;
 						}
 					}
 
@@ -411,10 +399,6 @@ class STLSR_Captcha {
 						foreach ( $data->{'error-codes'} as $error_code ) {
 							STLSR_Logger::log_error( $error_code, $form, $capt['captcha'], $ip_address );
 						}
-
-						if ( 0 !== count( array_intersect( array( 'missing-input-secret', 'invalid-input-secret' ), $data->{'error-codes'} ) ) ) {
-							return $commentdata;
-						}
 					}
 
 					if ( isset( $data->success ) && ( true === $data->success ) ) {
@@ -438,10 +422,6 @@ class STLSR_Captcha {
 						require_once STLSR_PLUGIN_DIR_PATH . 'includes/class-stlsr-logger.php';
 						foreach ( $data->{'error-codes'} as $error_code ) {
 							STLSR_Logger::log_error( $error_code, $form, $capt['captcha'], $ip_address );
-						}
-
-						if ( 0 !== count( array_intersect( array( 'missing-input-secret', 'invalid-input-secret' ), $data->{'error-codes'} ) ) ) {
-							return $commentdata;
 						}
 					}
 
@@ -473,10 +453,6 @@ class STLSR_Captcha {
 						require_once STLSR_PLUGIN_DIR_PATH . 'includes/class-stlsr-logger.php';
 						foreach ( $data->{'error-codes'} as $error_code ) {
 							STLSR_Logger::log_error( $error_code, $form, $capt['captcha'], $ip_address );
-						}
-
-						if ( 0 !== count( array_intersect( array( 'missing-input-secret', 'invalid-input-secret' ), $data->{'error-codes'} ) ) ) {
-							return $commentdata;
 						}
 					}
 

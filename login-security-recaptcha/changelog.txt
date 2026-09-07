@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.9.4 =
+* Improvement: Removed fail-open behavior from the comment and registration forms.
+
 = 1.9.3 =
 * Code improvements.
 
